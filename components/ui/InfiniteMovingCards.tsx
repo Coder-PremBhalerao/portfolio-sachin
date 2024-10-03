@@ -1,8 +1,7 @@
 "use client";
 
 import { cn } from "@/utils/cn";
-import React, { useEffect, useState, useCallback } from "react";
-import Image from "next/image"; // Import the Image component from Next.js
+import React, { useEffect, useState } from "react";
 
 export const InfiniteMovingCards = ({
   items,
@@ -27,8 +26,8 @@ export const InfiniteMovingCards = ({
 
   const [start, setStart] = useState(false);
 
-  // Wrap the addAnimation function in useCallback to stabilize its reference
-  const addAnimation = useCallback(() => {
+  // Move the addAnimation function declaration here
+  const addAnimation = () => {
     if (containerRef.current && scrollerRef.current) {
       const scrollerContent = Array.from(scrollerRef.current.children);
 
@@ -43,7 +42,7 @@ export const InfiniteMovingCards = ({
       getSpeed();
       setStart(true);
     }
-  }, [getDirection, getSpeed]); // Add dependencies for the functions used
+  };
 
   useEffect(() => {
     addAnimation();
@@ -81,7 +80,7 @@ export const InfiniteMovingCards = ({
     <div
       ref={containerRef}
       className={cn(
-        "scroller relative z-20 max-w-7xl overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]",
+        "scroller relative z-20  max-w-7xl overflow-hidden  [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]",
         className
       )}
     >
@@ -93,48 +92,50 @@ export const InfiniteMovingCards = ({
           pauseOnHover && "hover:[animation-play-state:paused]"
         )}
       >
-        {items.map((item) => (
-          <li
-            className="w-[90vw] max-w-full relative rounded-2xl border border-b-0 flex-shrink-0 border-slate-800 p-5 md:p-8 md:w-[60vw] min-h-[150px]"
-            style={{
-              background: "rgba(4,7,29)",
-              backgroundColor:
-                "linear-gradient(90deg, rgba(4,7,29,1) 0%, rgba(12,14,35,1) 100%)",
-            }}
-            key={item.name}
-          >
-            <blockquote>
-              <div
-                aria-hidden="true"
-                className="user-select-none -z-1 pointer-events-none absolute -left-0.5 -top-0.5 h-[calc(100%_+_4px)] w-[calc(100%_+_4px)]"
-              ></div>
-              <span className="relative z-20 text-sm md:text-lg leading-[1.6] text-white font-normal">
-                {item.quote}
-              </span>
-              <div className="relative z-20 mt-6 flex flex-row items-center">
-                <span className="flex flex-col gap-1">
-                  <div className="me-3">
-                    <Image
-                      src={item.img}
-                      alt={item.name}
-                      className="rounded-full w-16 h-16 object-cover"
-                      width={64} // Set width
-                      height={64} // Set height
-                    />
-                  </div>
-                  <div className="flex flex-col gap-1">
-                    <span className="text-xl leading-[1.6] text-white font-bold">
-                      {item.name}
-                    </span>
-                    <span className="text-sm leading-[1.6] text-white-200 font-normal">
-                      {item.title}
-                    </span>
-                  </div>
+        {items.map(
+          (
+            item // Removed idx from here since it wasn't being used
+          ) => (
+            <li
+              className="w-[90vw] max-w-full relative rounded-2xl border border-b-0 flex-shrink-0 border-slate-800 p-5 md:p-8 md:w-[60vw] min-h-[150px]"
+              style={{
+                background: "rgba(4,7,29)",
+                backgroundColor:
+                  "linear-gradient(90deg, rgba(4,7,29,1) 0%, rgba(12,14,35,1) 100%)",
+              }}
+              key={item.name}
+            >
+              <blockquote>
+                <div
+                  aria-hidden="true"
+                  className="user-select-none -z-1 pointer-events-none absolute -left-0.5 -top-0.5 h-[calc(100%_+_4px)] w-[calc(100%_+_4px)]"
+                ></div>
+                <span className="relative z-20 text-sm md:text-lg leading-[1.6] text-white font-normal">
+                  {item.quote}
                 </span>
-              </div>
-            </blockquote>
-          </li>
-        ))}
+                <div className="relative z-20 mt-6 flex flex-row items-center">
+                  <span className="flex flex-col gap-1">
+                    <div className="me-3">
+                      <img
+                        src={item.img}
+                        alt={item.name}
+                        className="rounded-full w-16 h-16 object-cover"
+                      />
+                    </div>
+                    <div className="flex flex-col gap-1">
+                      <span className="text-xl leading-[1.6] text-white font-bold">
+                        {item.name}
+                      </span>
+                      <span className="text-sm leading-[1.6] text-white-200 font-normal">
+                        {item.title}
+                      </span>
+                    </div>
+                  </span>
+                </div>
+              </blockquote>
+            </li>
+          )
+        )}
       </ul>
     </div>
   );
