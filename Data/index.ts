@@ -197,7 +197,7 @@ export const companies = [
   {
     id: 2,
     name: "Capjemini",
-    img: "capgemini.jpeg",
+    img: "/capgemini.jpeg",
   },
   {
     id: 3,

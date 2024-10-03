@@ -1,6 +1,7 @@
 "use client";
 
 import { cn } from "@/utils/cn";
+import Image from "next/image"; // Import Next.js Image component
 
 export const BentoGrid = ({
   className,
@@ -47,20 +48,16 @@ export const BentoGridItem = ({
     >
       {header}
       {img && (
-        <div className="relative w-full h-50 overflow-hidden rounded-lg mb-4">
-          {/* Image */}
-          <img
-            src={img}
-            alt={title}
-            className={cn(
-              "w-full h-full object-cover",
-              // For mobile view, increase height for the first and second items
-              (title === "The Power of Communication" ||
-                title === "Passionate Developer") &&
-                "h-[22rem] sm:h-[24rem]"
-            )}
+        <div className="relative w-full h-[22rem] overflow-hidden rounded-lg mb-4">
+          {" "}
+          {/* Set a fixed height for visibility */}
+          {/* Use Next.js Image component */}
+          <Image
+            src={img} // Ensure images are in the public folder or adjust path as needed
+            alt={typeof title === "string" ? title : "Bento item"} // Fallback alt text
+            layout="fill" // Cover the parent div
+            objectFit="cover" // Maintain aspect ratio and cover the area
           />
-
           {/* Overlay content (icon, title, description) */}
           <div className="absolute inset-0 flex flex-col justify-center items-center text-center p-4 mt-48">
             {icon && <div className="text-white mb-2">{icon}</div>}

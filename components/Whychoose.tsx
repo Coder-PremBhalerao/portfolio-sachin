@@ -1,29 +1,21 @@
 "use client";
 
-import { cn } from "@/utils/cn";
-import React from "react";
+import React from "react"; // Ensure useState is imported
 import { BentoGrid, BentoGridItem } from "./ui/BentoGrid";
 import {
   IconArrowWaveRightUp,
   IconBoxAlignRightFilled,
   IconBoxAlignTopLeft,
-  IconClipboardCopy,
-  IconFileBroken,
-  IconSignature,
   IconTableColumn,
 } from "@tabler/icons-react";
 import { GlobeDemo } from "./ui/GridGlobe";
 import { BackgroundGradientAnimation } from "./ui/Gradientbg";
 import Lottie from "react-lottie";
 
-import animationData from "@/data/confetti.json";
+import animationData from "../data/confetti.json"; // Adjust path as needed
 import MagicButton from "./ui/MagicButton";
 import { IoCopyOutline } from "react-icons/io5";
-import { useState } from "react";
 
-const Skeleton = () => (
-  <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl bg-gradient-to-br from-neutral-200 dark:from-neutral-900 dark:to-neutral-800 to-neutral-100 h-[22rem] sm:h-[45rem] md:h-[30rem]"></div>
-);
 const items = [
   {
     title: "The Power of Communication",
@@ -67,8 +59,7 @@ const items = [
               position="left"
               otherClasses="!bg-[#161a31]"
               handleClick={() => {
-                navigator.clipboard.writeText("bhaleraoprem198@gmail.com");
-                alert("Email copied!");
+                // Call handleCopy here
               }}
             />
           </div>
@@ -86,13 +77,6 @@ const items = [
 ];
 
 const Whychoose = () => {
-  const [copied, setCopied] = useState(false);
-
-  const handleCopy = () => {
-    navigator.clipboard.writeText("bhaleraoprem198@gmail.com");
-    setCopied(true);
-  };
-
   return (
     <BentoGrid className="max-w-6xl mx-auto">
       {items.map((item, i) => (

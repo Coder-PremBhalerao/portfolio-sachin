@@ -1,4 +1,3 @@
-import React from "react";
 import MagicButton from "./ui/MagicButton";
 import {
   FaLocationArrow,
@@ -6,6 +5,7 @@ import {
   FaFacebook,
   FaTwitter,
 } from "react-icons/fa"; // Import LinkedIn icon
+import Image from "next/image"; // Import the Image component from Next.js
 
 const socialMedias = [
   {
@@ -15,12 +15,12 @@ const socialMedias = [
   },
   {
     id: "facebook",
-    link: "https://www.linkedin.com/in/sachinashelke/",
+    link: "https://www.facebook.com/", // Change to the correct link for Facebook
     icon: <FaFacebook />,
   },
   {
     id: "twitter",
-    link: "https://www.linkedin.com/in/sachinashelke/",
+    link: "https://twitter.com/", // Change to the correct link for Twitter
     icon: <FaTwitter />,
   },
 ];
@@ -29,10 +29,12 @@ const Footer = () => {
   return (
     <footer className="w-full pt-20 pb-10" id="contact">
       <div className="w-full absolute left-0 -bottom-72 min-h-96">
-        <img
-          src="/footer-grid.svg"
+        <Image
+          src="/footer-grid.svg" // Assuming the image is in the public folder
           alt="grid"
-          className="w-full h-full opacity-50"
+          layout="fill" // Use layout="fill" for responsive design
+          objectFit="cover" // Maintain aspect ratio
+          className="opacity-50"
         />
       </div>
 

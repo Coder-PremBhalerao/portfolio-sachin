@@ -1,6 +1,7 @@
 import React from "react";
 import { InfiniteMovingCards } from "./ui/InfiniteMovingCards";
 import { companies, testimonials } from "@/Data";
+import Image from "next/image"; // Import Next.js Image component
 
 const Clients = () => {
   return (
@@ -22,11 +23,15 @@ const Clients = () => {
               key={id}
               className="flex flex-row items-center md:max-w-60 max-w-32 gap-2"
             >
-              <img src={img} alt={name} className="md:w-10 w-5" />
-              <span className="text-center text-xl font-semibold">
-                {name}
-              </span>{" "}
-              {/* Add this line to show the name */}
+              {/* Ensure img path starts with "/" */}
+              <Image
+                src={img} // Path already starts with "/" in the array
+                alt={name}
+                width={40} // Adjust size accordingly
+                height={40} // Adjust size accordingly
+                className="md:w-10 w-5"
+              />
+              <span className="text-center text-xl font-semibold">{name}</span>
             </div>
           ))}
         </div>

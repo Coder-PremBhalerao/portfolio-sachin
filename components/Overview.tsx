@@ -6,13 +6,14 @@ import { motion } from "framer-motion";
 import { styles } from "../Data/index"; // Import styles, you can add or adjust accordingly.
 import { fadeIn, textVariant } from "../utils/motion";
 import { SectionWrapper } from "./hoc/index.js";
+import Image from "next/image"; // Import Next.js Image component
 
 // Dummy services data for 4 cards
 const services = [
-  { title: "Quality Assurance Engineer", img: "./web.png" },
-  { title: "Embeded Device", img: "./mobile.png" },
-  { title: "Web and Mobile Applications", img: "./backend.png" },
-  { title: "Cloud Services", img: "./creator.png" },
+  { title: "Quality Assurance Engineer", img: "/web.png" }, // Add leading slash
+  { title: "Embedded Device", img: "/mobile.png" }, // Add leading slash
+  { title: "Web and Mobile Applications", img: "/backend.png" }, // Add leading slash
+  { title: "Cloud Services", img: "/creator.png" }, // Add leading slash
 ];
 
 const ServiceCard = ({ index, title, img }) => {
@@ -46,7 +47,14 @@ const ServiceCard = ({ index, title, img }) => {
             backgroundColor: "#03002e", // Navy blue background
           }}
         >
-          <img src={img} alt={title} className="w-16 h-16 object-contain" />
+          {/* Use Next.js Image component instead of img */}
+          <Image
+            src={img} // Ensure images are in the public folder
+            alt={title}
+            width={64} // Adjust size accordingly
+            height={64} // Adjust size accordingly
+            className="object-contain" // Keep the aspect ratio
+          />
 
           <h3 className="text-white text-[17px] font-bold text-center">
             {title}
@@ -69,15 +77,15 @@ const Overview = () => {
         variants={fadeIn("", "", 0.1, 1)}
         className="mt-4 text-gray-400 text-[17px] max-w-2xl leading-[30px] text-justify"
       >
-        over 10 years of experience in software testing, I am a Senior QA
+        Over 10 years of experience in software testing, I am a Senior QA
         Engineer at Microsoft, where I work on the Supervisor module for an
         AI-based chatbot application. I am certified in Microsoft Azure
         Fundamentals, ISTQB Foundation Level, and TOSCA Automation Specialist
         Level 1 and 2. I have extensive knowledge and skills in various testing
         tools and technologies, such as Playwright, Cypress, Selenium, Azure,
         Robot framework, Java, JavaScript, and TypeScript. I have led and
-        coordinated testing teams and activities different domains, such as
-        healthcare, cloud services, embedded devices, web and mobile
+        coordinated testing teams and activities in different domains, such as
+        healthcare, cloud services, embedded devices, web, and mobile
         applications.
       </motion.p>
 

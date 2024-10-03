@@ -3,6 +3,7 @@
 import { experiences } from "@/Data";
 import { motion } from "framer-motion";
 import React from "react";
+import Image from "next/image"; // Import the Image component from Next.js
 
 const Experience = () => {
   return (
@@ -24,7 +25,14 @@ const Experience = () => {
               index % 2 === 0 ? "left-container" : "right-container"
             }`}
           >
-            <img src={experience.icon} alt={experience.company_name} />
+            {/* Replace <img> with <Image> */}
+            <Image
+              src={experience.icon}
+              alt={experience.company_name}
+              width={50} // Set appropriate width
+              height={50} // Set appropriate height
+              className="icon-image" // You can add class for styling if needed
+            />
             <div className="text-box">
               <h1 className="text-white text-2xl font-bold">
                 {experience.title}
