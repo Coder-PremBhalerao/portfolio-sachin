@@ -2,7 +2,7 @@ import { styles } from "@/Data";
 import { staggerContainer } from "@/utils/motion";
 import { motion } from "framer-motion";
 
-const SectionWrapper = (Component) =>
+const SectionWrapper = (Component, sectionName) =>
   function HOC() {
     return (
       <motion.section

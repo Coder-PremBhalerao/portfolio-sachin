@@ -16,32 +16,37 @@ const services = [
   { title: "Cloud Services", img: "/creator.png" }, // Add leading slash
 ];
 
-const ServiceCard = ({ index, title, img }) => {
+// Define the service interface
+interface Service {
+  title: string;
+  img: string;
+}
+
+interface ServiceCardProps {
+  index: number; // index should be of type number
+  title: string; // title should be of type string
+  img: string; // img should be of type string
+}
+
+const ServiceCard: React.FC<ServiceCardProps> = ({ index, title, img }) => {
   // Define different shadow colors for each card
   const shadows = [
-    "shadow-[0_20px_23px_rgba(0,0,255,0.5)]", // Red shadow
-    "shadow-[0_20px_23px_rgba(0,0,255,0.5)]", // Green shadow
+    "shadow-[0_20px_23px_rgba(255,0,0,0.5)]", // Red shadow
+    "shadow-[0_20px_23px_rgba(0,255,0,0.5)]", // Green shadow
     "shadow-[0_20px_23px_rgba(0,0,255,0.5)]", // Blue shadow
-    "shadow-[0_20px_23px_rgba(0,0,255,0.5)]", // Yellow shadow
+    "shadow-[0_20px_23px_rgba(255,255,0,0.5)]", // Yellow shadow
   ];
 
   return (
-    <Tilt className="lg:w-[200px] sm:w-[250px] w-full" id="about">
+    <Tilt options={{ max: 45, scale: 1, speed: 450 }} className="lg:w-[200px] sm:w-[250px] w-full" id="about">
       <motion.div
         variants={fadeIn("right", "spring", index * 0.5, 0.75)}
-        className={`w-full p-[1px] rounded-[20px] ${
-          shadows[index % shadows.length]
-        }`} // Use shadow from the array
+        className={`w-full p-[1px] rounded-[20px] ${shadows[index % shadows.length]}`}
         style={{
           background: "linear-gradient(to right, #caf0f8, #caf0f8)", // 1px gradient border
         }}
       >
         <div
-          options={{
-            max: 45,
-            scale: 1,
-            speed: 450,
-          }}
           className="rounded-[20px] py-5 px-12 min-h-[240px] flex justify-evenly items-center flex-col"
           style={{
             backgroundColor: "#03002e", // Navy blue background
@@ -65,10 +70,10 @@ const ServiceCard = ({ index, title, img }) => {
   );
 };
 
-const Overview = () => {
+const Overview: React.FC = () => {
   return (
     <>
-      <motion.div className="mt-14" variants={textVariant()}>
+      <motion.div className="mt-14" variants={textVariant(0)}>
         <p className={styles.sectionSubText}>Introduction</p>
         <h2 className={styles.sectionHeadText}>Overview.</h2>
       </motion.div>
@@ -90,7 +95,7 @@ const Overview = () => {
       </motion.p>
 
       <div className="mt-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 sm:gap-8 lg:gap-6 lg:mr-60">
-        {services.map((service, index) => (
+        {services.map((service: Service, index: number) => (
           <ServiceCard key={service.title} index={index} {...service} />
         ))}
       </div>
