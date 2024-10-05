@@ -12,7 +12,7 @@ import { GlobeDemo } from "./ui/GridGlobe";
 import { BackgroundGradientAnimation } from "./ui/Gradientbg";
 import Lottie from "react-lottie";
 
-import animationData from "../Data/confetti.json"; // Correct path
+import animationData from "@/Data/confetti.json"; // Correct path
 
 import MagicButton from "./ui/MagicButton";
 import { IoCopyOutline } from "react-icons/io5";
